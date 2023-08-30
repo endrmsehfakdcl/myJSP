@@ -1,0 +1,10 @@
+package com.network;
+
+public class Echo2Server extends Thread {
+	protected static boolean cont = true;
+	protected Socket connection = null;
+
+	public static void main(String[] args) {
+
+	}
+}

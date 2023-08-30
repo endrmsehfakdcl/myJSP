@@ -1,0 +1,8 @@
+package com.network;
+
+public class Echo2Server extends Thread {
+	protected static boolean cont = true;
+	public static void main(String[] args) {
+		
+	}
+}

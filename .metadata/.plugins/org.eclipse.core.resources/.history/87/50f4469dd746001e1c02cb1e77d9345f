@@ -1,0 +1,17 @@
+package com.network;
+
+import java.util.Scanner;
+
+public class InetAddressTest {
+
+	public static void main(String[] args) {
+		InetAddress addr1 = null;
+		InetAddress addr2 = null;
+		System.out.println("호스트 이름을 입력하세요 : ");
+		Scanner in = new Scanner(System.in);
+		String url = in.nextLine();
+		
+		InetAddress
+	}
+
+}

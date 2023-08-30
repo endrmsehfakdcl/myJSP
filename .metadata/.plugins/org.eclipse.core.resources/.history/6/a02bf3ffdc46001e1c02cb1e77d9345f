@@ -1,0 +1,9 @@
+package com.network;
+
+import java.net.ServerSocket;
+
+public class SimpleServer {
+	public static void main(String[] args) {
+		new ServerSocket(5000);
+	}
+}

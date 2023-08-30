@@ -1,0 +1,11 @@
+package com.network;
+
+public class InetAddress {
+
+	public static void main(String[] args) {
+		InetAddress addr1 = null;
+		InetAddress addr2 = null;
+
+	}
+
+}
