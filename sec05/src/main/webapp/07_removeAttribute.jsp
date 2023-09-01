@@ -23,8 +23,8 @@
 		out.println(name + ":" + value + "<br>");
 	}
 
-	names = session.getAttributeNames();
 	session.removeAttribute("s_name2");
+	names = session.getAttributeNames();
 	out.print("<h3>세션값을 삭제한 후 </h3>");
 	while (names.hasMoreElements()) {
 		String name = names.nextElement().toString();
@@ -33,7 +33,7 @@
 	}
 	
 	out.print("<h3>세션값을 모두 삭제한 후</h3>");
-	out.println("request.isRequestedSessionIdValid()");
+	out.println(request.isRequestedSessionIdValid());
 	session.invalidate();
 	out.println(request.isRequestedSessionIdValid());
 	%>
