@@ -54,6 +54,6 @@
 	}
 	%>
 	<h3>회원 가입 성공</h3>
-	<a href="03_MemberList.jsp">회원목록</a>
+	<a href="03_memberList.jsp">회원목록</a>
 </body>
 </html>
