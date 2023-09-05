@@ -3,6 +3,7 @@ package com.keduit.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -30,8 +31,8 @@ public class MemberDAO {
 		return conn;
 	}
 
+	// LoginServlet doPost
 	public int userCheck(String userid, String pwd) {
-
 		int result = -1;
 		String sql = "select pwd from member where userid=?";
 		Connection conn = null;
@@ -92,8 +93,8 @@ public class MemberDAO {
 		return memberVO;
 	}
 
+	// 아이디 중복 체크
 	public int conformID(String userid) {
-
 		int result = -1;
 		String sql = "select userid from member where userid=?";
 		Connection conn = null;
@@ -127,6 +128,61 @@ public class MemberDAO {
 				e.printStackTrace();
 			}
 		}
+		return result;
+	}
+
+	public int insertMember(MemberVO mVO) {
+		int result = 0;
+		String sql = "insert into member values (?,?,?,?,?,?)";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mVO.getName());
+			pstmt.setString(2, mVO.getUserid());
+			pstmt.setString(3, mVO.getPwd());
+			pstmt.setString(4, mVO.getEmail());
+			pstmt.setString(5, mVO.getPhone());
+			pstmt.setInt(6, mVO.getAdmin());
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+
+	public int updateMember(MemberVO mVO) {
+		int result = 0;
+		String sql = "update member set name=?, pwd=?, email=?, phone=?, admin=? where userid=?";
+//		Connection conn =null;
+//		PreparedStatement pstmt = null;
+		try (Connection conn = getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
+			pstmt.setString(1, mVO.getName());
+			pstmt.setString(2, mVO.getPwd());
+			pstmt.setString(3, mVO.getEmail());
+			pstmt.setString(4, mVO.getPhone());
+			pstmt.setInt(5, mVO.getAdmin());
+			pstmt.setString(6, mVO.getUserid());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		return result;
 	}
 }
