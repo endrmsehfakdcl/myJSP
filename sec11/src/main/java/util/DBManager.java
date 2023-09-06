@@ -16,6 +16,7 @@ public class DBManager {
 		Context envContext = (Context) initContext.lookup("java:/comp/env");
 		DataSource ds = (DataSource) envContext.lookup("jdbc/myoracle");
 		Connection conn = ds.getConnection();
+		System.out.println("DBManger : DBCP 연동 성공!");
 		return conn;
 	}
 
